@@ -6,6 +6,7 @@ import AuthLayout from '../components/AuthLayout.jsx'
 export default function Signup({ onAuth }) {
   const [name, setName] = useState('')
   const [dob, setDob] = useState('')
+  const [dobType, setDobType] = useState('text')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -65,11 +66,13 @@ export default function Signup({ onAuth }) {
           </span>
           <input
             required
-            type="date"
+            type={dobType}
             value={dob}
             onChange={(e) => setDob(e.target.value)}
-            placeholder="Date of Birth"
+            placeholder="dd-mm-yyyy"
             max={new Date().toISOString().split('T')[0]}
+            onFocus={() => setDobType('date')}
+            onBlur={(e) => { if (!e.target.value) setDobType('text') }}
           />
         </label>
         <label className="auth-input">

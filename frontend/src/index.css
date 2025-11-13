@@ -53,8 +53,35 @@ body{
 
 .auth-shell{
 	display:inline-block; /* sized by card */
-	padding-top: 0.75rem; /* account for floating tab height above */
-	padding-bottom: 0.75rem; /* balance visual height for true centering */
+	padding-top: 0.5rem; /* equalize top spacing with floating tab */
+	padding-bottom: 0.5rem; /* symmetric spacing for visual centering */
+	transform: scale(0.92);
+	transform-origin: center center;
+}
+
+/* Responsive tweaks for narrow screens to avoid horizontal clipping */
+@media (max-width: 420px){
+	.auth-screen{ padding-left: 1rem; padding-right: 1rem; }
+	.auth-card{ max-width: min(380px, calc(100vw - 2rem)); }
+	.auth-tab{ padding: 0.75rem 2.5rem; }
+	.auth-shell{ transform: scale(0.90); transform-origin: center center; }
+}
+
+@media (max-width: 360px){
+	.auth-screen{ padding-left: 0.75rem; padding-right: 0.75rem; }
+	.auth-card{ max-width: calc(100vw - 1.5rem); }
+	.auth-tab{ padding: 0.65rem 1.75rem; font-size: 0.95rem; }
+	.auth-shell{ transform: scale(0.88); transform-origin: center center; }
+	.auth-input{ padding: 0.8rem 0.9rem; }
+	.auth-input input{ font-size: 0.94rem; }
+}
+
+@media (max-width: 340px){
+	.auth-shell{ transform: scale(0.88); transform-origin: center center; }
+}
+
+@media (max-width: 320px){
+	.auth-shell{ transform: scale(0.84); transform-origin: center center; }
 }
 
 /* Prevent body scroll only on auth screens (modern browsers) */
@@ -64,7 +91,7 @@ body:has(.auth-screen){
 
 .auth-card{
 	width:100%;
-	max-width: 380px;
+	max-width: min(380px, calc(100vw - 2rem));
 	background: #1b2445;
 	border-radius: 28px;
 	box-shadow: 0 24px 55px rgba(5,17,53,0.45);
@@ -164,6 +191,7 @@ body:has(.auth-screen){
 	padding:0.9rem 1rem;
 	border:1px solid rgba(255,255,255,0.12);
 	transition:border-color 150ms ease, box-shadow 150ms ease;
+	overflow:hidden; /* prevent child overflow on small screens */
 }
 
 .auth-input:focus-within{
@@ -186,11 +214,15 @@ body:has(.auth-screen){
 
 .auth-input input{
 	flex:1;
+	min-width:0; /* allow flex child to shrink */
 	background:transparent;
 	border:0;
 	color:#f5f8ff;
 	font-size:0.98rem;
 	outline:none;
+	white-space:nowrap; /* keep on one line */
+	overflow:hidden; /* clip excess text */
+	text-overflow:ellipsis; /* show ellipsis for long values */
 }
 
 .auth-input input::placeholder{
@@ -219,6 +251,9 @@ body:has(.auth-screen){
 }
 
 .auth-remember a:hover{opacity:0.85;}
+
+/* Match remember-me text color to the link color */
+.auth-remember label{ color:#4deaf5; }
 
 .auth-button{
 	margin-top:0.25rem;
@@ -301,24 +336,25 @@ body:has(.auth-screen){
 .page-btn:disabled{opacity:0.45;cursor:not-allowed;}
 
 /* Compact handling: keep the signup card fully within the viewport on shorter screens */
+
 @media (max-height: 900px) {
-	.auth-card[data-variant="signup"]{ transform: scale(0.97); transform-origin: top center; }
+	.auth-card{ transform: scale(0.97); transform-origin: center center; }
 	.auth-screen{ padding-top: 2.25rem; padding-bottom: 2.25rem; }
 }
 @media (max-height: 820px) {
-	.auth-card[data-variant="signup"]{ transform: scale(0.94); }
+	.auth-card{ transform: scale(0.94); transform-origin: center center; }
 	.auth-screen{ padding-top: 1.75rem; padding-bottom: 1.75rem; }
 }
 @media (max-height: 760px) {
-	.auth-card[data-variant="signup"]{ transform: scale(0.90); }
+	.auth-card{ transform: scale(0.90); transform-origin: center center; }
 	.auth-screen{ padding-top: 1.25rem; padding-bottom: 1.25rem; }
 }
 @media (max-height: 720px) {
-	.auth-card[data-variant="signup"]{ transform: scale(0.88); }
-	.auth-card[data-variant="signup"] .auth-footer{ padding-bottom: 1.5rem; }
+	.auth-card{ transform: scale(0.88); transform-origin: center center; }
+	.auth-card .auth-footer{ padding-bottom: 1.5rem; }
 }
 @media (max-height: 680px) {
-	.auth-card[data-variant="signup"]{ transform: scale(0.86); }
+	.auth-card{ transform: scale(0.86); transform-origin: center center; }
 	.auth-screen{ padding-top: 1rem; padding-bottom: 1rem; }
 }
 
