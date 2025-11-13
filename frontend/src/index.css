@@ -41,12 +41,18 @@ body{
 
 /* Auth screen styling */
 .auth-screen{
+	/* Use dynamic viewport units for accurate mobile centering */
 	min-height: 100vh;
-	height: 100vh; /* lock to viewport height */
+	height: 100vh; /* fallback */
+	min-height: 100svh;
+	height: 100svh; /* small viewport (iOS Safari) */
+	min-height: 100dvh;
+	height: 100dvh; /* dynamic viewport (Android/iOS modern) */
 	display:flex; /* flexbox centering */
 	align-items:center;
 	justify-content:center;
-	padding: 3rem 1.5rem;
+	/* include safe-area insets to keep margins balanced on notched phones */
+	padding: calc(3rem + env(safe-area-inset-top)) 1.5rem calc(3rem + env(safe-area-inset-bottom)) 1.5rem;
 	background: linear-gradient(180deg,#00a1a7 0%,#028c96 30%,#006b7d 70%,#024455 100%);
 	position:relative;
 	overflow: hidden; /* prevent page scroll on auth screens */
