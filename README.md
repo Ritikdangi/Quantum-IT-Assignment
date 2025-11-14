@@ -5,6 +5,12 @@ A minimal MERN auth sample with a styled login/signup UI and a protected dashboa
 ## Stack
 - Backend: Node.js + Express + Mongoose + JWT
 - Frontend: React (Vite) + React Router + Tailwind (utility + custom CSS)
+##Screenshots
+<img width="1911" height="931" alt="image" src="https://github.com/user-attachments/assets/fdd67153-e370-43f5-b750-642a28f601ff" />
+<img width="1907" height="923" alt="image" src="https://github.com/user-attachments/assets/2e33af7f-fb44-4d62-8b31-b47c05231bb9" />
+
+<img width="1888" height="924" alt="image" src="https://github.com/user-attachments/assets/61e1a6d2-0501-4326-9c89-639c620a8854" />
+
 
 ## Local Development
 
